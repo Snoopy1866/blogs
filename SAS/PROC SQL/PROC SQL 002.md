@@ -1,3 +1,15 @@
+<p align="left">
+    <a href="./PROC SQL 001.md">
+        上一篇：PROC SQL 001
+    </a>
+</p>
+
+<p align="right">
+    <a href="./PROC SQL 003.md">
+        下一篇：PROC SQL 003
+    </a>
+</p>
+
 上一节中，我们介绍了如何使用 SQL 创建和删除数据集、视图和索引。这一节我们介绍如何使用 SQL 修改数据集的结构，以及更新、新增和删除数据集中的观测。
 
 ## 修改数据集的结构
@@ -127,3 +139,15 @@ quit;
 ```
 
 上述代码删除了数据集 DM 中所有未入组的受试者（`RANDFL ^= "Y"`）的观测。
+
+<p align="left">
+    <a href="./PROC SQL 001.md">
+        上一篇：PROC SQL 001
+    </a>
+</p>
+
+<p align="right">
+    <a href="./PROC SQL 003.md">
+        下一篇：PROC SQL 003
+    </a>
+</p>
