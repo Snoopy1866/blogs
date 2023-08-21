@@ -1,15 +1,3 @@
-<p align="left">
-    <a href="./PROC SQL 002.md">
-        上一篇：PROC SQL 002
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 004.md">
-        下一篇：PROC SQL 004
-    </a>
-</p>
-
 前两节中，我们介绍了如何使用 SQL 创建、删除数据集、修改数据集结构，以及如何新增、删除和更新数据集的观测。前两节所涉及到的内容都是对数据集的增、删、改的操作，从本节开始，我们将对 SQL 中最常见，也最灵活的查询操作进行详细的介绍。
 
 
@@ -89,15 +77,3 @@ proc sql;
     from DM;
 quit;
 ```
-
-<p align="left">
-    <a href="./PROC SQL 002.md">
-        上一篇：PROC SQL 002
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 004.md">
-        下一篇：PROC SQL 004
-    </a>
-</p>

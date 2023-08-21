@@ -1,9 +1,3 @@
-<p align="right">
-    <a href="./PROC SQL 002.md">
-        下一篇：PROC SQL 002
-    </a>
-</p>
-
 SQL 全称 Strucured Query Language，即结构化查询语言，广泛应用于关系型数据库中。
 
 SAS Base 使用 PROC SQL 提供了对 SQL 的实现。PROC SQL 过程可以帮助我们完成以下任务：
@@ -125,9 +119,3 @@ quit;
 1. 删除数据集或视图后，所有引用了该数据集或视图的视图都将失效；
 2. 删除含有索引的数据集后，该数据集中的所有索引也将一并被删除；
 3. 删除一个复合索引后，其所关联的变量都将失去该复合索引，但会保留其他索引。
-
-<p align="right">
-    <a href="./PROC SQL 002.md">
-        下一篇：PROC SQL 002
-    </a>
-</p>

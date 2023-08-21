@@ -1,15 +1,3 @@
-<p align="left">
-    <a href="./PROC SQL 003.md">
-        上一篇：PROC SQL 003
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 005.md">
-        下一篇：PROC SQL 005
-    </a>
-</p>
-
 上一节，我们介绍了使用 SELECT 语句对变量进行查询，这一节我们继续介绍 SELECT 的简单查询操作。
 
 ### 常量
@@ -193,15 +181,3 @@ quit;
 上述例子使用 CALCULATED 关键字引用了当前 SELECT 语句中经过单位转换的变量 `height` 和 `weight`，直接使用转换后的结果计算 BMI。若不使用 CALCULATED 关键字，则引用的仍然是未经过单位转换的变量。如下图所示，BMI1 是引用了经过单位转换的变量后的正确计算结果，BMI2 是引用了未经过单位转换的原始变量后的错误计算结果。
 
 ![img](./img/PROC%20SQL%20004/calculated-output.png)
-
-<p align="left">
-    <a href="./PROC SQL 003.md">
-        上一篇：PROC SQL 003
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 005.md">
-        下一篇：PROC SQL 005
-    </a>
-</p>

@@ -1,15 +1,3 @@
-<p align="left">
-    <a href="./PROC SQL 004.md">
-        上一篇：PROC SQL 004
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 006.md">
-        下一篇：PROC SQL 006
-    </a>
-</p>
-
 上一节，我们提到了 CASE 表达式在 PROC SQL 中的应用。事实上，PROC SQL 支持更为一般的 SQL 表达式。
 
 ### 表达式的结构
@@ -171,15 +159,3 @@ quit;
 - 百分号 (`%`) : 匹配 0 个或 n 个字母（n > 0）
 
 💡 受限于目前对 PROC SQL 的了解程度，`CONTAINS` 和 `EXISTS` 操作符将在以后进行介绍。
-
-<p align="left">
-    <a href="./PROC SQL 006.md">
-        上一篇：PROC SQL 006
-    </a>
-</p>
-
-<p align="right">
-    <a href="./PROC SQL 006.md">
-        下一篇：PROC SQL 006
-    </a>
-</p>
