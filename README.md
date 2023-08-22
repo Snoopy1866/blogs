@@ -11,7 +11,7 @@
   - [003 查询变量](./SAS/PROC%20SQL/PROC%20SQL%20003.md)
   - [004 常量、函数、CASE表达式](./SAS/PROC%20SQL/PROC%20SQL%20004.md)
   - [005 聚集函数、子集](./SAS/PROC%20SQL/PROC%20SQL%20005.md)
-
+  - [006 排序、分组、过滤分组](./SAS/PROC%20SQL/PROC%20SQL%20006.md)
 
 ## C#
 
