@@ -21,7 +21,7 @@ TextView[text="青少年守护模式"] +n TextView[text="我知道了"]
 
 以 “青创网” 的更新弹窗为例，目标控件是 TextView[text="取消"]，特征控件是 TextView[text*="新版本"]（这里 \*= 表示属性 text 的值包含字符串 “新版本”），特征控件和目标控件并不是兄弟关系，从节点树上来看，目标控件所处的位置要更深一层，表现在控件属性上就是 TextView[text="取消"] 控件的 depth 属性比 TextView[text*="新版本"] 控件的 depth 属性增加 1，为了表示控件 depth 的关系，需要引入 > 符号，这个更新弹窗的规则可以书写为：
 
-TextView[text*="新版本"] +(n) LinearLayout > TextView[text="取消"]
+TextView[text*="新版本"] +n LinearLayout > TextView[text="取消"]
 
 这条规则中，左侧的 TextView 控件并非右侧 TextView 的直接父控件，因此需要增加右侧 TextView 的直接父控件作为额外的特征控件，这里右侧 TextView 的直接父控件是 LinearLayout 控件，它们使用 > 符号连接。左侧 TextView 控件与 LinearLayout 控件又是兄弟关系，它们之间使用 +n 连接，由此就定义了一条查找目标控件的完整路径。
 
