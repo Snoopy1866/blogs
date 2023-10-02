@@ -23,7 +23,7 @@ TextView[text="青少年守护模式"] +n TextView[text="我知道了"]
 
 TextView[text*="新版本"] +(n) LinearLayout > TextView[text="取消"]
 
-这条规则中，左侧的 TextView 控件并非右侧 TextView 的直接父控件，因此需要增加右侧 TextView 的直接父控件作为额外的特征控件，这里右侧 TextView 的直接父控件是 LinearLayout 控件，它们使用 > 符号串联。左侧 TextView 控件与 LinearLayout 控件又是兄弟关系，它们之间使用 +n 串联，由此就定义了一条查找目标控件的完整路径。
+这条规则中，左侧的 TextView 控件并非右侧 TextView 的直接父控件，因此需要增加右侧 TextView 的直接父控件作为额外的特征控件，这里右侧 TextView 的直接父控件是 LinearLayout 控件，它们使用 > 符号连接。左侧 TextView 控件与 LinearLayout 控件又是兄弟关系，它们之间使用 +n 连接，由此就定义了一条查找目标控件的完整路径。
 
 ![](./assets/kuaiduizuoye-example.png)
 
