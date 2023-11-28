@@ -2,7 +2,7 @@
 
 ### 表达式的结构
 
-SQL 表达式由操作数（*operand*）和操作符（*operator*）组成。
+SQL 表达式由操作数（_operand_）和操作符（_operator_）组成。
 
 操作数可以是以下任意一种：
 
@@ -49,13 +49,14 @@ quit;
 
 这里例子中，生成变量 WEIGHTC 和 HEIGHTC 的表达式较为简单，仅使用了 SAS 函数和字符串连接符；而生成变量 BMI1 和 BMI2 的表达式则要复杂得多。
 
-💡 计算 BMI1 变量的表达式中，使用了逻辑运算符 `=`。逻辑表达式的计算结果通常是一个布尔值，在 SAS 中，若表达式结果为 “真”，则运算结果为 1，若为 “假” ，则运算结果为 0。这一特性使得我们可以将逻辑表达式嵌套在算数表达式中，更进一步地说，这其实可以看成指示函数（*Indicator function*）的一种形式。
+💡 计算 BMI1 变量的表达式中，使用了逻辑运算符 `=`。逻辑表达式的计算结果通常是一个布尔值，在 SAS 中，若表达式结果为 “真”，则运算结果为 1，若为 “假” ，则运算结果为 0。这一特性使得我们可以将逻辑表达式嵌套在算数表达式中，更进一步地说，这其实可以看成指示函数（_Indicator function_）的一种形式。
 
 💡 计算 BMI2 变量的表达式中，使用了 CASE 表达式的运算结果作为算数表达式 `/` 的两个操作数，不难发现 CASE 表达式的计算结果也可以作为操作数在其他表达式中使用。
 
 SQL 表达式大部分用法与 DATA 步是一致的，一些简单的用法在此处就不再一一列举了，下面介绍两种仅在 PROC SQL 中常用的表达式用法。
 
 ### 聚集函数
+
 我们都知道，SAS 在执行 DATA 步的时候是以观测为单位的，遍历每条观测，并重复执行 DTAT 步中的可执行语句。这使得在 DATA 步中对变量的横向操作是非常方便的，但与此同时，在 DATA 步中对观测纵向操作却是较为困难的。
 
 例如：计算某条数值变量的均值，DATA 步的做法通常是使用 retain 语句进行，通过保留变量值到下一个观测，实现累加。简单的计算逻辑尚且可以这么做，但如若遇到复杂的逻辑，我们可能需要声明多个 retain 变量，并时刻注意变量值的改变，当运算完成后，可能还需要将临时变量删除，繁琐的语句不仅会降低代码可读性，还可能容易出错。
@@ -90,6 +91,7 @@ quit;
 ![img](./img/PROC%20SQL%20005/aggregate-function.png)
 
 如果需要对不重复的观测进行汇总统计，可以在聚集函数中使用 `DISTINCT` 关键字，例如，统计发生不良事件的受试者数量：
+
 ```sql
 proc sql;
     select count(distinct usubjid) from adae;
@@ -97,6 +99,7 @@ quit;
 ```
 
 ### 子集
+
 在某些时候，我们可能只需要查询结果中的一个子集，这时候可以使用 `where` 子句进行子集的筛选。where 子句支持以下取子集的操作符：
 
 - `IS MISSING` : 缺失值
@@ -106,10 +109,10 @@ quit;
 - `CONTAINS` : 变量包含某个值
 - `EXISTS` : 子查询非空
 
-
 具体介绍：
 
 #### IS MISSING
+
 ```sql
 proc sql;
     select * from adae where aestdt is missing;
@@ -119,6 +122,7 @@ quit;
 这个例子中，使用 `IS` 操作符筛选发生日期缺失的所有不良事件的信息。注意：IS 操作符的右侧只能是 `NULL` 或 `MISSING`，二者含义相同。
 
 #### IN
+
 ```sql
 proc sql;
     select * from sashelp.class where name in ("John", "Thomas");
@@ -132,6 +136,7 @@ quit;
 这个例子中，使用 `IN` 操作符筛选名称为 "John" 和 "Thomas" 的学生信息。
 
 #### BETWEEN
+
 ```sql
 proc sql;
     select * from sashelp.class where (age between 11 and 12) and (name between "L" and "T");
@@ -145,6 +150,7 @@ quit;
 这个例子中，使用 `BETWEEN` 操作符筛选年龄在 11 ~ 12 岁，且姓名首字母在 "L" ~ "T" 的学生信息。注意：BETWEEN 操作符定义的范围两端必须是同一类型的值。
 
 #### LIKE
+
 ```sql
 proc sql;
     select * from sashelp.class where name like "Jane_" or name like "Ro%";
