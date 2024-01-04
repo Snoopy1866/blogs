@@ -26,7 +26,7 @@ SQL 表达式由操作数（_operand_）和操作符（_operator_）组成。
 
 先来个例子感受一下：
 
-```sql
+```sas
 proc sql;
     select
         MONOTONIC() as seq label = "序号",
@@ -76,7 +76,7 @@ SQL 表达式大部分用法与 DATA 步是一致的，一些简单的用法在�
 
 下面的例子使用了聚集函数 `count()`, `mean()`, `std()` 对数据集 class 进行了简单的统计量计算：
 
-```sql
+```sas
 proc sql;
     select
         count(name)     as n        label = "人数",
@@ -92,7 +92,7 @@ quit;
 
 如果需要对不重复的观测进行汇总统计，可以在聚集函数中使用 `DISTINCT` 关键字，例如，统计发生不良事件的受试者数量：
 
-```sql
+```sas
 proc sql;
     select count(distinct usubjid) from adae;
 quit;
@@ -113,7 +113,7 @@ quit;
 
 #### IS MISSING
 
-```sql
+```sas
 proc sql;
     select * from adae where aestdt is missing;
 quit;
@@ -123,7 +123,7 @@ quit;
 
 #### IN
 
-```sql
+```sas
 proc sql;
     select * from sashelp.class where name in ("John", "Thomas");
 quit;
@@ -137,7 +137,7 @@ quit;
 
 #### BETWEEN
 
-```sql
+```sas
 proc sql;
     select * from sashelp.class where (age between 11 and 12) and (name between "L" and "T");
 quit;
@@ -151,7 +151,7 @@ quit;
 
 #### LIKE
 
-```sql
+```sas
 proc sql;
     select * from sashelp.class where name like "Jane_" or name like "Ro%";
 quit;
@@ -164,4 +164,14 @@ quit;
 - 下划线 (`_`) : 匹配 0 个或 1 个字母
 - 百分号 (`%`) : 匹配 0 个或 n 个字母（n > 0）
 
-💡 受限于目前对 PROC SQL 的了解程度，`CONTAINS` 和 `EXISTS` 操作符将在以后进行介绍。
+#### CONTAINS
+
+```sas
+proc sql;
+    select * from sashelp.class where name contains "Jane";
+quit;
+```
+
+![](./img/PROC%20SQL%20005/subset-contains.png)
+
+💡 受限于目前对 PROC SQL 的了解程度，`EXISTS` 操作符将在以后进行介绍。
