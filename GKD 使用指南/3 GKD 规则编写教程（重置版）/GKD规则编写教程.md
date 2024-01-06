@@ -170,7 +170,7 @@ GKD 使用无障碍权限获取到某个广告弹窗的界面元素信息，并�
 
 例如：在快照 https://i.gkd.li/import/13348703 中，我们定位到“跳过”按钮，右侧显示该按钮的所有属性。其中 text 属性是 "跳过"，这是一个字符串，因此，我们可以用以下属性选择器定位这个控件：
 
-```json
+```
 android.widget.TextView[text="跳过"]
 ```
 
@@ -178,7 +178,7 @@ android.widget.TextView[text="跳过"]
 
 由于是在安卓平台使用，`android.widget` 通常可以省略，为了简化书写，上述属性选择器可以简化为：
 
-```json
+```
 TextView[text="跳过"]
 ```
 
@@ -194,7 +194,7 @@ TextView[text="跳过"]
 
 我们可以使用字符串操作符 `^=` 帮助我们完成上述模糊匹配的任务，即：
 
-```json
+```
 TextView[text^="跳过"]
 ```
 
@@ -215,19 +215,19 @@ TextView[text^="跳过"]
 
 在这个快照中，跳过按钮的是一个 `Button` 控件，属性选择器 `TextView[text^="跳过"]` 并不能定位到这个控件，应该将 `TextView` 改为 `Button`，即：
 
-```json
+```
 Button[text^="跳过"]
 ```
 
 更进一步，我们可以使用 `*` 代替中括号前面的 `TextView` 或 `Button`，即：
 
-```json
+```
 *[text^="跳过"]
 ```
 
 `*` 表示任意控件，可以是 `TextView`，`Button`，`ImageView` 等等，`*` 可以省略，上述属性选择器可以进一步简化为：
 
-```json
+```
 [text^="跳过"]
 ```
 
@@ -235,7 +235,7 @@ Button[text^="跳过"]
 
 在实际书写开屏广告规则时，为了防止某些 APP 偶有开屏不显示广告直接进入首页，此时恰好首页存在某个控件的 `text` 属性含有字符串 `"跳过"`，造成错误点击的情况发生，需要对上述属性选择器作进一步限制。例如：
 
-```json
+```
 [text^="跳过"][text.length<=10]
 ```
 
@@ -252,7 +252,7 @@ Button[text^="跳过"]
 
 可以对属性选择器添加更多的限制条件，例如：
 
-```json
+```
 [text^="跳过"][text.length<=10][clickable=true][visibleToUser=true]
 ```
 
@@ -264,7 +264,7 @@ Button[text^="跳过"]
 
 以 https://i.gkd.li/import/13561226 这个快照中的更新弹窗为例，在这个快照中，我们想要达成的效果是：自动点击 【取消】按钮，那么目标控件的属性选择器是：
 
-```json
+```
 [text="取消"]
 ```
 
@@ -272,7 +272,7 @@ Button[text^="跳过"]
 
 因此，我们可以写下 【更新】按钮的属性选择器：
 
-```json
+```
 [text="更新"]
 ```
 
@@ -282,7 +282,7 @@ Button[text^="跳过"]
 
 使用**关系操作符** `+` 可以连接两个兄弟关系的节点，例如：
 
-```json
+```
 [text="取消"] + [text="更新"]
 ```
 
@@ -298,7 +298,7 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 可以使用符号 `@` 手动指定某个属性选择器作为目标控件，将符号 `@` 放置在属性选择器前面即可，例如：
 
-```json
+```
 @[text="取消"] + [text="更新"]
 ```
 
@@ -306,7 +306,7 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 如果你不想使用符号 `@`，也可以使用关系操作符 `-`，它的作用与关系操作符 `+` 完全相反，例如：
 
-```json
+```
 [text="更新"] - [text="取消"]
 ```
 
@@ -314,13 +314,13 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 以 https://i.gkd.li/import/12776605 这个快照中的更新弹窗为例，在这个快照中，我们想要达成的效果是：自动点击 【取消】按钮，那么目标控件的属性选择器是：
 
-```json
+```
 [text="取消"]
 ```
 
 可以将 【立即下载】、【应用升级提醒】按钮作为特征控件，为了说明关系操作符 `>` 的用法，这里我们选择【应用升级提醒】按钮，它的属性选择器是：
 
-```json
+```
 [text="应用升级提醒"]
 ```
 
@@ -328,7 +328,7 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 首选使用关系操作符 `+` 建立【应用升级提醒】与 `LinearLayout` 控件的联系：
 
-```json
+```
 [text="应用升级提醒"] +3 LinearLayout
 ```
 
@@ -336,13 +336,13 @@ _这里的关系选择器是 `+3`，数字 3 表示左侧控件和右侧控件�
 
 然后，使用关系操作符 `>` 建立 `LinearLayout` 与 【立即下载】的联系：
 
-```json
+```
 [text="应用升级提醒"] +3 LinearLayout > [text="取消"]
 ```
 
 实际书写规则时，建议将 `LinearLayout` 替换为 `*`，因为我们只需要一个控件作为中间桥梁，构建特征控件与目标控件的联系，至于作为中间桥梁的控件具体是什么，我们并不关心，它有可能是 `LinearLayout`、`FrameLayout`、`View` 等等。因此，上述选择器可以优化为：
 
-```json
+```
 [text="应用升级提醒"] +3 * > [text="取消"]
 ```
 
@@ -352,7 +352,7 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 上面的例子也可以使用关系操作符 `<` 进行改写，如下：
 
-```json
+```
 @[text="取消"] < * -3 [text="应用升级提醒"]
 ```
 
@@ -366,13 +366,13 @@ _另外，我们还可以在审查工具右侧的属性列表中发现，【取�
 
 如果你看过 [5.3.2.1](#5321-兄弟节点) 的内容，对于第一个快照，可以很容易地写下如下选择器：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] + [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
 对于第二个快照，可以写下如下选择器（`+n` 的用法我们已经在 [5.3.2.2](#5322-父子节点) 中了解到了。）：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +2 [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
@@ -386,7 +386,7 @@ $$
 
 将关系操作符 `+` 与元组表达式结合，就能将上面两个选择器合二为一：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +(1,2) [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
@@ -414,7 +414,7 @@ $$
 
 例如：控件 `ImageView` 和 `TextView` 是兄弟关系，且它们的父节点下存在 10 个子节点，那么关系选择器 `ImageView +(2n+3) TextView` 最多同时包含以下三种具体情况：
 
-```json
+```
 ImageView +5 TextView
 ImageView +7 TextView
 ImageView +9 TextView
@@ -426,7 +426,7 @@ ImageView +9 TextView
 
 当然，我们首先可以很容易地想到，使用最简单的 `+(1n+0)` 即可：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +(1n+0) [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
@@ -434,19 +434,19 @@ ImageView +9 TextView
 
 另外，如果 $a=1，b=0$，则 $(an+b)$ 可以简化为 $(n)$（[详细了解](#53233-表达式的简写)），因此上述选择器可以优化为：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +(n) [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
 括号在这里也已经失去了区分关系操作符 `+` 和算数运算符 `+` 的作用，因此可以省略：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +n [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
 当然，我们也可以使用以下选择器，在数学原理上避免死循环：
 
-```json
+```
 [id="com.gotokeep.keep:id/layoutLottie"] +(3-n) [id="com.gotokeep.keep:id/imgCloseHomePageDialog"]
 ```
 
